@@ -4,7 +4,10 @@
   "port": 3306,
   "username": "root",
   "password": "root",
-  "database": "test",
+  "database": "crud",
   "entities": ["dist/**/*.entity{.ts,.js}"],
-  "synchronize": true
+  "migrations": ["migration/*.{.ts,.js}"],
+  "cli": {
+    "migrationsDir": "migration"
+  }
 }

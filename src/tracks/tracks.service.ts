@@ -25,7 +25,7 @@ export class TracksService {
     return await this.trackRepository.findOne(id);
   }
 
-  async updateTrack(id: string, data: TrackDTO): Promise<Track> {
+  async updateTrack(id: string, data: Partial<TrackDTO>): Promise<Track> {
     await this.trackRepository.update(id, data);
     return await this.trackRepository.findOne(id);
   }

@@ -1,17 +1,17 @@
 import {
-  Controller,
-  Post,
   Body,
-  Get,
-  Put,
+  Controller,
   Delete,
+  Get,
   Param,
+  Post,
+  Put,
 } from '@nestjs/common';
-import { TracksService } from './tracks.service';
 import { Track } from './track.entity';
 import { TrackDTO } from './trackDTO';
+import { TracksService } from './tracks.service';
 
-@Controller('tracks')
+@Controller('api/tracks')
 export class TracksController {
   constructor(private tracksService: TracksService) {}
 
@@ -34,7 +34,7 @@ export class TracksController {
   @Put(':id')
   async updateTrack(
     @Param('id') id: string,
-    @Body() data: TrackDTO,
+    @Body() data: Partial<TrackDTO>,
   ): Promise<Track> {
     return await this.tracksService.updateTrack(id, data);
   }
