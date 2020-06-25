@@ -48,4 +48,22 @@ export class UsersService {
     const token = await this.authService.generateToken(user);
     return await this.authService.toResponseObject({ ...user, token });
   }
+
+  async validateUser(
+    username: string,
+    password: string,
+  ): Promise<User | boolean> {
+    const user = await this.findUser(username);
+    if (user) {
+      const hashedPassword = user.password;
+      const passwordMatch = this.authService.comparePassword(
+        password,
+        hashedPassword,
+      );
+      if (passwordMatch) {
+        return user;
+      }
+    }
+    return false;
+  }
 }

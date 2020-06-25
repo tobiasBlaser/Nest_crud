@@ -22,7 +22,11 @@ export class AuthService {
     return await bcrypt.compare(password, hashedPassword);
   }
 
-  async toResponseObject(data: any): Promise<any> {
+  async toResponseObject(data: {
+    id: string;
+    username: string;
+    token: string;
+  }): Promise<any> {
     const { id, username, token } = data;
     return { id, username, token };
   }
